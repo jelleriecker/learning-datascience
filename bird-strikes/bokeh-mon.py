@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import pandas_bokeh as pdb
+from bokeh.plotting import figure, show
 
 from bokeh.models.widgets import DataTable, TableColumn
 from bokeh.models import ColumnDataSource
@@ -9,28 +10,12 @@ from bokeh.models import ColumnDataSource
 
 df = pd.read_csv("database.csv")
 
-column_names = df.columns.tolist()
+#column_names = df.columns.tolist()
 
+x = df['Incident Day']
+y = df['Engine1 Strike']
 
-df2 = pd.DataFrame(df).set_index
+plot1 = figure(title="Bird Strikes", x_axis_label='Year', y_axis_label='Fatalities')
+plot1.line(x, y, legend_label="Bird Strikes", line_width=2)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-#df['Incident Date'] = pd.to_datetime(df['Incident Year', 'Incident Month', 'Incident Day'], format='%Ymm%d')
-
-#kind_of_incident = df.filter(like='Damage').columns.tolist() + df.filter(like='Strike').columns.tolist()
-#amount_of_incidents = df[kind_of_incident].sum()
-#total_values = df[kind_of_incident].sum()
-#yearly_incidents = df.groupby('Incident Year')[kind_of_incident].sum()
-
+show(plot1)
